@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Cupid to Heart Transition</title>
+</head>
+<body>
+  <!-- Cupid Container -->
+  <div class="cupid-container" id="cupidContainer">
+    <div class="cupid">
+      <div class="speech-bubble">Hiiiiiiiiiiiiiiiiiii 💖</div>
+    </div>
+  </div>
+  <button class="back-button" id="backBtn">← Back to Start</button>
+  <!-- Heart Animation -->
+  <div class="heart-container" id="heartContainer">
+    <div class="heart">
+      <div class="sparkles" id="sparkles"></div>
+    </div>
+    <div class="heart-text">Happy valentine's day! I love you soo much 🤍</div>
+  </div>
+
+  <script>
+    const cupidContainer = document.getElementById('cupidContainer');
+    const heartContainer = document.getElementById('heartContainer');
+    const backButton = document.getElementById('backBtn');
+    const sparkles = document.getElementById('sparkles');
+
+    function createSparkle() {
+      const sparkle = document.createElement('div');
+      sparkle.className = 'sparkle';
+      sparkle.innerHTML = '✨';
+      sparkle.style.left = Math.random() * 100 + '%';
+      sparkle.style.animationDelay = Math.random() * 1 + 's';
+      sparkles.appendChild(sparkle);
+      setTimeout(() => sparkle.remove(), 1500);
+    }
+
+    function showHeartAnimation() {
+      cupidContainer.style.opacity = '0';
+      setTimeout(() => {
+        cupidContainer.style.display = 'none';
+        heartContainer.style.display = 'flex';
+        backButton.style.display = 'block';
+        setInterval(createSparkle, 300);
+      }, 500);
+    }
+
+    backButton.addEventListener('click', () => {
+      document.body.style.animation = 'fadeOut 1s forwards';
+      setTimeout(() => {
+        window.location.href = 'startpage.html';
+      }, 1000);
+    });
+
+    cupidContainer.addEventListener('click', showHeartAnimation);
+  </script>
+</body>
+</html>
